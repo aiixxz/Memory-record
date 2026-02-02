@@ -98,9 +98,7 @@ const App: React.FC = () => {
     <div 
       className="min-h-screen relative overflow-hidden select-none transition-all duration-[1.5s] ease-in-out"
       style={{ 
-      backgroundImage: currentConfig.bgimage ? `url(${currentConfig.bgimage})` : 'none',
-      backgroundColor: currentConfig.color,
-      backgroundBlendMode: 'overlay' 
+      backgroundImage: currentConfig.bgimage ? `url(${currentConfig.bgimage})` : 'none'
       }}
     >
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.015] pointer-events-none z-0">
