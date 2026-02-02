@@ -9,7 +9,8 @@ const REEL_CONFIG: Record<string, { title: string; subtitle: string; color: stri
     title: 'MEMORY',
     subtitle: '我要做一棵树',
     color: 'rgba(10, 10, 9, 0.85)',
-    note: 'TEXTURE OF TIME / ARCHIVE COLLECTION NO. 0042'
+    note: 'TEXTURE OF TIME / ARCHIVE COLLECTION NO. 0042'，
+    bgimage：'./image/2025-background.jpg'
   },
   '2024': {
     title: 'ECHOES',
@@ -94,7 +95,7 @@ const App: React.FC = () => {
   return (
     <div 
       className="min-h-screen relative overflow-hidden select-none transition-all duration-[1.5s] ease-in-out"
-      style={{ backgroundColor: currentConfig.color }}
+      style={{ backgroundImage: currentConfig.bgimage }}
     >
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.015] pointer-events-none z-0">
         <span className="text-[40rem] font-['Bebas_Neue'] leading-none text-white">{activeYear}</span>
