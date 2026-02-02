@@ -95,7 +95,11 @@ const App: React.FC = () => {
   return (
     <div 
       className="min-h-screen relative overflow-hidden select-none transition-all duration-[1.5s] ease-in-out"
-      style={{ backgroundImage: currentConfig.bgimage }}
+      style={{ 
+      backgroundImage: currentConfig.bgimage ? `url(${currentConfig.bgimage})` : 'none',
+      backgroundColor: currentConfig.color,
+      backgroundBlendMode: 'overlay' 
+      }}
     >
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.015] pointer-events-none z-0">
         <span className="text-[40rem] font-['Bebas_Neue'] leading-none text-white">{activeYear}</span>
