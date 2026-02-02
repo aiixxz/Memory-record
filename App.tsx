@@ -9,7 +9,7 @@ const REEL_CONFIG: Record<string, { title: string; subtitle: string; color: stri
     title: 'MEMORY',
     subtitle: '我要做一棵树',
     color: 'rgba(10, 10, 9, 0.85)',
-    note: 'TEXTURE OF TIME / ARCHIVE COLLECTION NO. 0042'，
+    note: 'TEXTURE OF TIME / ARCHIVE COLLECTION NO. 0042',
     bgimage：'./image/2025-background.jpg'
   },
   '2024': {
