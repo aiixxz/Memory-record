@@ -4,25 +4,27 @@ import UploadModal from './components/UploadModal';
 import { MOCK_PHOTOS } from './constants';
 import { Photo } from './types';
 
-const REEL_CONFIG: Record<string, { title: string; subtitle: string; color: string; note: string }> = {
+const REEL_CONFIG: Record<string, { title: string; subtitle: string; color: string; note: string; bgimage?: string }> = {
   '2025': {
     title: 'MEMORY',
     subtitle: '我要做一棵树',
     color: 'rgba(10, 10, 9, 0.85)',
-    note: 'TEXTURE OF TIME / ARCHIVE COLLECTION NO. 0042',
-    bgimage: './image/2025-background.jpg'
+    note: 'TEXTURE OF TIME / NO. 0042',
+    bgimage: './image/2025-background.jpg' 
   },
   '2024': {
     title: 'ECHOES',
     subtitle: '听见风的声音',
     color: 'rgba(20, 18, 16, 0.85)',
-    note: 'RESONANCE / CHRONICLE COLLECTION NO. 0039'
+    note: 'RESONANCE / NO. 0039',
+    bgimage: './image/2024-background.jpg'
   },
   '2023': {
     title: 'ORIGIN',
     subtitle: '万物生长的起点',
     color: 'rgba(12, 16, 18, 0.85)',
-    note: 'FOUNDATION / GENESIS COLLECTION NO. 0021'
+    note: 'FOUNDATION / NO. 0021',
+    bgimage: './image/2023-background.jpg'
   }
 };
 
