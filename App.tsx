@@ -4,7 +4,14 @@ import UploadModal from './components/UploadModal';
 import { MOCK_PHOTOS } from './constants';
 import { Photo } from './types';
 
-const REEL_CONFIG: Record<string, { title: string; subtitle: string; color: string; note: string; bgimage?: string }> = {
+// 关键修正：在类型定义中增加 bgimage，并设为可选字段 (?)
+const REEL_CONFIG: Record<string, { 
+  title: string; 
+  subtitle: string; 
+  color: string; 
+  note: string; 
+  bgimage?: string; // 允许对象中出现 bgimage 字段
+}> = {
   '2025': {
     title: 'MEMORY',
     subtitle: '我要做一棵树',
@@ -61,14 +68,12 @@ const App: React.FC = () => {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-
     const handleWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) > 0) {
         e.preventDefault();
         el.scrollLeft += e.deltaY;
       }
     };
-
     el.addEventListener('wheel', handleWheel, { passive: false });
     return () => el.removeEventListener('wheel', handleWheel);
   }, []);
@@ -96,16 +101,18 @@ const App: React.FC = () => {
 
   return (
     <div 
-      className="min-h-screen relative overflow-hidden select-none transition-all duration-[1.5s] ease-in-out"
+      className="min-h-screen relative overflow-hidden select-none transition-all duration-[1.5s] ease-in-out bg-cover bg-center"
       style={{ 
-      backgroundImage: currentConfig.bgimage ? `url(${currentConfig.bgimage})` : 'none'
+        backgroundImage: currentConfig.bgimage ? `url(${currentConfig.bgimage})` : 'none',
+        backgroundColor: currentConfig.color,
+        backgroundBlendMode: 'overlay' 
       }}
     >
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.015] pointer-events-none z-0">
         <span className="text-[40rem] font-['Bebas_Neue'] leading-none text-white">{activeYear}</span>
       </div>
       
-      {/* Subtle Vertical Timeline */}
+      {/* 垂直时间轴 */}
       <div className="fixed left-8 top-1/2 -translate-y-1/2 z-[100] flex flex-col items-center gap-8">
         <div className="h-16 w-px bg-white opacity-10"></div>
         {years.map((year, idx) => (
@@ -130,7 +137,7 @@ const App: React.FC = () => {
         <div className="h-16 w-px bg-white opacity-10"></div>
       </div>
 
-      {/* Editorial Title Section */}
+      {/* 标题部分 */}
       <div className="absolute top-16 left-20 z-0 pointer-events-none group">
         <h1 className="flex flex-col gap-0 leading-none">
           <span className="text-white text-9xl md:text-[13rem] font-['Cormorant_Garamond'] font-light tracking-[-0.05em] opacity-80 transition-all duration-[1.5s] group-hover:tracking-tight group-hover:opacity-100">
@@ -154,7 +161,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Horizontal Scroll Area */}
+      {/* 胶片滚动区域 */}
       <div 
         ref={scrollRef}
         className={`scroll-container relative z-10 transition-all duration-700 ${
@@ -162,10 +169,8 @@ const App: React.FC = () => {
         }`}
       >
         <div className="flex-shrink-0 w-[55vw] md:w-[48vw]"></div>
-
         <div className="relative flex items-center">
           <div className="film-reel-track"></div>
-          
           <div className="flex items-center gap-2">
             {filteredPhotos.map((photo) => (
               <PhotoCard 
@@ -176,8 +181,8 @@ const App: React.FC = () => {
             ))}
           </div>
         </div>
-
-        {/* Outro Section */}
+        
+        {/* 结尾部分 */}
         <div className="flex-shrink-0 w-[60vw] h-full flex flex-col justify-center items-start pl-48 relative">
            <div className="absolute top-1/2 -translate-y-1/2 -left-20 opacity-[0.015] pointer-events-none">
               <span className="text-[25rem] font-['Bebas_Neue'] tracking-tighter text-white">FINIS</span>
@@ -206,22 +211,14 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Archive Manager Button */}
+      {/* 管理按钮 */}
       <div className="fixed bottom-10 left-10 z-[110]">
         <button 
           onClick={() => setIsModalOpen(true)}
           className="w-8 h-8 flex items-center justify-center border border-white/5 rounded-full text-white/20 hover:text-[var(--accent-gold)] hover:border-[var(--accent-gold)]/40 hover:scale-110 transition-all duration-500 opacity-20 hover:opacity-100"
-          title="Add Frame to Archive"
         >
           <span className="text-lg font-light">+</span>
         </button>
-      </div>
-
-      {/* Minimal Sidebar Info */}
-      <div className="fixed bottom-12 right-16 z-50 flex flex-col items-end gap-2 opacity-30 group hover:opacity-100 transition-opacity duration-700">
-        <span className="text-[9px] font-['Inter'] tracking-[0.4em] text-[var(--text-secondary)] uppercase">REEL_{activeYear}</span>
-        <div className="w-12 h-px bg-[var(--accent-gold)] transition-all duration-700 group-hover:w-24"></div>
-        <span className="text-white font-['Cormorant_Garamond'] text-2xl font-light italic">Observation is an art.</span>
       </div>
 
       {isModalOpen && (
@@ -231,10 +228,6 @@ const App: React.FC = () => {
           currentYear={activeYear}
         />
       )}
-
-      {/* Guide Lines */}
-      <div className="fixed top-1/4 left-0 w-full h-px bg-white/[0.01] pointer-events-none z-0"></div>
-      <div className="fixed bottom-1/4 left-0 w-full h-px bg-white/[0.01] pointer-events-none z-0"></div>
     </div>
   );
 };
