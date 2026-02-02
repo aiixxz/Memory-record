@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Analog & Collage - Personal Portfolio",
+  "description": "An artistic personal website featuring a film-inspired and collage aesthetic for photography and writings.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
